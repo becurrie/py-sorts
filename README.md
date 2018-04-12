@@ -6,11 +6,9 @@ Sort Integers using different sorting algorithms!
 
 Simply use the console to begin sorting!
 
-```python sorter.py -s bubble -i 9 3 2 8 4```
+```
+python -m sorter -s bubble -i 9 3 2 8 4
 
-Will output
-
-```python
 Sort: Bubble
 Original: [9, 3, 2, 8, 4]
 Sorted: [2, 3, 4, 8, 9]
@@ -19,11 +17,22 @@ Time(s):  1.4662442710170721e-05
 
 ```python sorter.py -h``` can be used to view the available arguments possible.
 
+```
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INTEGERS [INTEGERS ...], --integers INTEGERS [INTEGERS ...]
+                        integer(s) being sorted.
+  -g GENERATE, --generate GENERATE
+                        generate a random list of integers to sort.
+  -s {bubble,bogo,merge,selection}, --sort {bubble,bogo,merge,selection}
+                        type of sort being performed.
+```
 
 ### Installing
 
 - Clone repository locally
-- Use your python package manager to install entire module using the ```setup.py``` file.
+- ```python setup.py install```
+- Access library from console with ```python -m sorter```
 
 ## Authors
 
