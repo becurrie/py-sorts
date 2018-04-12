@@ -7,5 +7,6 @@ setup(
     license='MIT',
     author='Votum',
     author_email='brettecurrie@gmail.com',
-    description='Sort Integers in the console.'
+    description='Sort Integers in the console.',
+	py_modules=['sorter'],
 )

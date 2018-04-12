@@ -8,31 +8,23 @@ Simply use the console to begin sorting!
 
 ```
 python -m sorter -s bubble -i 9 3 2 8 4
-
-Sort: Bubble
-Original: [9, 3, 2, 8, 4]
-Sorted: [2, 3, 4, 8, 9]
-Time(s):  1.4662442710170721e-05
+python -m sorter -g 100 -s selection
+python -m sorter -g 5 -s bogo
+python -m sorter -i  1 5 4 38 5 4 56 8 2 -s selection
 ```
+
+### Caution
+- Be careful when using the bogo sorting algorithm, it shuffles
+an array and checks it sorted iteratively, larger data sets will take a long time.
 
 ```python sorter.py -h``` can be used to view the available arguments possible.
-
-```
-optional arguments:
-  -h, --help            show this help message and exit
-  -i INTEGERS [INTEGERS ...], --integers INTEGERS [INTEGERS ...]
-                        integer(s) being sorted.
-  -g GENERATE, --generate GENERATE
-                        generate a random list of integers to sort.
-  -s {bubble,bogo,merge,selection}, --sort {bubble,bogo,merge,selection}
-                        type of sort being performed.
-```
 
 ### Installing
 
 - Clone repository locally
+- ```python setup.py build```
 - ```python setup.py install```
-- Access library from console with ```python -m sorter```
+- Access module from console with ```python -m sorter```
 
 ## Authors
 
