@@ -8,10 +8,10 @@ Sort Integers using different sorting algorithms!
 
 #### Sorts Available
 
-- Selection
-- Merge
-- Bogo
-- Bubble
+- [Selection](https://www.geeksforgeeks.org/selection-sort/)
+- [Merge](https://www.geeksforgeeks.org/merge-sort/)
+- [Bogo](https://en.wikipedia.org/wiki/Bogosort)
+- [Bubble](https://www.geeksforgeeks.org/bubble-sort/)
 
 #### Arguments
 
