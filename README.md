@@ -6,20 +6,24 @@ Sort Integers using different sorting algorithms!
 
 ## Getting Started
 
-### Sorts Available
+#### Sorts Available
 
 - Selection
 - Merge
 - Bogo
 - Bubble
 
+#### Arguments
+
+- -s, --sort: provide a sort method to use.
+    - selection, bogo, merge, bubble.
+- -i, --integers: include your own list of integers. (ex: ```python -m sorter -i 9 3 2 8 4```
+- -g, --generate: generate a random list of integers. (ex: ```python -m sorter -g 1000```
+
 Simply use the console to begin sorting!
 
-```python
-python -m sorter -s bubble -i 9 3 2 8 4
-python -m sorter -g 100 -s selection
-python -m sorter -g 5 -s bogo
-python -m sorter -i  1 5 4 38 5 4 56 8 2 -s selection
+```
+python -m sorter -g 100 -s bubble
 ```
 
 ### Caution
