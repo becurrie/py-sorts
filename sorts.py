@@ -39,6 +39,44 @@ def selection_sort(integers):
     return integers_clone
 
 
+def merge_sort(integers):
+    """Divide and conquer approach to sorting a list. Check left index
+    id > right index and return, otherwise, grab new middle variable and call
+    method recursively until sorted, then merge the half together
+    """
+    if len(integers) > 1:
+        mid = len(integers) // 2
+        left = integers[:mid]
+        right = integers[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        # Splitting here.
+        i, j, k = 0, 0, 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                integers[k] = left[i]
+                i += 1
+            else:
+                integers[k] = right[j]
+                j += 1
+
+            k += 1
+
+        # Merging here.
+        while i < len(left):
+            integers[k] = left[i]
+            i += 1
+            k += 1
+        while j < len(right):
+            integers[k] = right[j]
+            j += 1
+            k += 1
+
+    return integers
+
+
 def bogo_sort(integers):
     """Sort a list of integers using a bogo sort, randomly replacing
     integers in the list until a sorted list is created.
@@ -46,24 +84,14 @@ def bogo_sort(integers):
     integers_clone = list(integers)
 
     is_sorted = False
-    loops = 0
 
-    print('\t-------------------------------')
     while not is_sorted:
         random.shuffle(integers_clone)
         for i in range(len(integers_clone) - 1):
-            loops += 1
-
-            # Print the loops variable every 25000th iteration.
-            if loops % 25000 == 0:
-                print('\tBOGO Sort: Loops=%s' % loops)
-
             if integers_clone[i] > integers_clone[i + 1]:
                 is_sorted = False
                 break
             else:
                 is_sorted = True
 
-    print('\t-------------------------------')
-    print('\tLoops:    %s' % loops)
     return integers_clone

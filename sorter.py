@@ -1,9 +1,8 @@
 import argparse
 import os
-import random
 import timeit
 
-from sorts import bubble_sort, bogo_sort, selection_sort
+from sorts import *
 
 
 class Parser:
@@ -29,17 +28,19 @@ class Parser:
 
 def print_results(sort_type, original_list, sorted_list, time):
     """Print an original list, sorted list and time required to sort the original list."""
-    print('\tSort:     %s' % str.capitalize(sort_type))
-    print('\tOriginal:   ')
+    print('\t-------------------------------')
+    print('\tSort Type: [%s]' % str.upper(sort_type))
+    print('\tOriginal List:')
     for original_chunk in print_list_chunks(original_list, 20):
-        print('\t' + str(original_chunk))
+        print('\t' + str(original_chunk)[1:-1])
 
-    print('\tSorted:     ')
+    print('\tSorted List:')
     for sorted_chunk in print_list_chunks(sorted_list, 20):
-        print('\t' + str(sorted_chunk))
+        print('\t' + str(sorted_chunk)[1:-1])
 
-    # Calculate time required to sort using sequential sort.
-    print('\tTime(s):  %s' % time)
+    # Print time required to sort list.
+    print('\t-------------------------------')
+    print('\tTime(seconds): %s' % time)
     print('\t-------------------------------')
 
 
@@ -59,7 +60,7 @@ def generate_integer_list(size):
 
 
 def main():
-    """Main method. build arguments and sort based on --sort arg."""
+    """Main method. build arguments, clear console and parse arguments"""
     parser = Parser().build_arguments()
     args = parser.parser.parse_args()
 
@@ -91,6 +92,13 @@ def main():
         sorted_list = selection_sort(args.integers)
         final = timeit.default_timer()
         print_results(args.sort, args.integers, sorted_list, final - initial)
+
+    elif args.sort == 'merge':
+        initial = timeit.default_timer()
+        original = list(args.integers)
+        sorted_list = merge_sort(args.integers)
+        final = timeit.default_timer()
+        print_results(args.sort, original, sorted_list, final - initial)
 
 
 if __name__ == "__main__":
