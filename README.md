@@ -16,7 +16,7 @@ Sort Integers using different sorting algorithms!
 #### Arguments
 
 - -s, --sort: provide a sort method to use.
-    - selection, bogo, merge, bubble.
+    - selection, bogo, merge, bubble, quick.
 - -i, --integers: include your own list of integers. (ex: ```python -m sorter -i 9 3 2 8 4```
 - -g, --generate: generate a random list of integers. (ex: ```python -m sorter -g 1000```
 
