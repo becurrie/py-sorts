@@ -1,12 +1,15 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
-    name='py-custom-sorters',
-    version='0.1.1',
-    url='https://github.com/becurrie/py-custom-sorters',
-    license='MIT',
-    author='becurrie',
+    name='sorter',
     author_email='brettecurrie@gmail.com',
-    description='Sort Integers in the console.',
-    py_modules=['sorter'],
+    author='becurrie',
+    version='0.1.2',
+    description='sort integers with different sorting algorithms.',
+    packages=find_packages(),
+    py_modules=['sorter.sorter'],
+    entry_points={'console_scripts': ['sorter = sorter.sorter:main']},
+    license='MIT',
+    url='https://github.com/becurrie/py-custom-sorters',
+    keywords=['sorting', 'algorithm', 'console', 'application'],
 )

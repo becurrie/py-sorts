@@ -30,14 +30,13 @@ python -m sorter -g 100 -s bubble
 - Be careful when using the **Bogo** sorting algorithm, it shuffles
 an array and checks it sorted iteratively, larger data sets will take a long time (forever).
 
-```python sorter.py -h``` can be used to view the available arguments possible.
+```python -m sorter -h``` can be used to view the available arguments possible.
 
 ### Installing
 
-- Clone repository locally
-- ```python setup.py build```
-- ```python setup.py install```
-- Access module from console with ```python -m sorter```
+- Clone repository locally.
+- ```python setup.py install```.
+- Access module from console with ```python -m sorter```.
 
 ## Authors
 

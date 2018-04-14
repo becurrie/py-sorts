@@ -95,3 +95,53 @@ def bogo_sort(integers):
                 is_sorted = True
 
     return integers_clone
+
+
+def quick_sort(integers):
+    """Perform a quick sort on a list of integers, selecting a pivot
+    point, partition all elements into a first and second part while
+    looping so all elements < pivot are in first part, any elements
+    > then pivot are in seconds part, recursively sort both half's
+    and combine.
+    """
+    quick_sort_helper(integers, 0, len(integers) - 1)
+
+
+def quick_sort_helper(integers, first, last):
+    """Small helper method for calling and recursively finding
+    pivot/split points.
+    """
+    if first < last:
+        split = quick_sort_partition(integers, first, last)
+
+        quick_sort_helper(integers, first, split - 1)
+        quick_sort_helper(integers, split + 1, last)
+
+
+def quick_sort_partition(integers, first, last):
+    """Generate a correct partition point for the given list of integers."""
+    pivot_value = integers[first]
+
+    left = first + 1
+    right = last
+
+    done = False
+    while not done:
+        while left <= right and integers[left] <= pivot_value:
+            left += 1
+
+        while integers[right] >= pivot_value and right >= left:
+            right -= 1
+
+        if right < left:
+            done = True
+        else:
+            temp = integers[left]
+            integers[left] = integers[right]
+            integers[right] = temp
+
+    temp = integers[first]
+    integers[first] = integers[right]
+    integers[right] = temp
+
+    return right
