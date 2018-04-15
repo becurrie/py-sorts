@@ -1,11 +1,11 @@
 import unittest
 
 from sorter.sorts import *
-
 from sorter.sorter import parse_args
 
 
 class TestParsing(unittest.TestCase):
+    """Test each argument available in the parser located in the sorter.py file."""
 
     def test_integers(self):
         """Test the optional one of: integers argument."""
@@ -22,8 +22,18 @@ class TestParsing(unittest.TestCase):
         parser = parse_args(['-g', '10', '-s', 'bubble'])
         self.assertTrue(parser.sort)
 
+    def test_list(self):
+        """Test the optional list argument."""
+        parser = parse_args(['-g', '10', '-s', 'bubble', '-l'])
+        self.assertTrue(parser.list)
+        self.assertEqual(True, parser.list)
+
+        parser = parse_args(['-g', '10', '-s', 'bubble'])
+        self.assertEqual(False, parser.list)
+
 
 class TestSorts(unittest.TestCase):
+    """Test each sorting method located in the sorts.py file."""
 
     def setUp(self):
         """Simple setup function to create the actual/expected
@@ -58,6 +68,10 @@ class TestSorts(unittest.TestCase):
         because the quick_sort method sorts in place and doesn't return
         a new sorted list.
         """
-        clone = self.actual
-        quick_sort(clone)
-        self.assertEqual(self.expected, clone)
+        integers = quick_sort(self.actual)
+        self.assertEqual(self.expected, integers)
+
+    def test_radix(self):
+        """Test the radix_sort function."""
+        integers = radix_sort(self.actual)
+        self.assertEqual(self.expected, integers)

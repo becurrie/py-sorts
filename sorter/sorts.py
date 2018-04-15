@@ -105,6 +105,7 @@ def quick_sort(integers):
     and combine.
     """
     quick_sort_helper(integers, 0, len(integers) - 1)
+    return integers
 
 
 def quick_sort_helper(integers, first, last):
@@ -145,3 +146,45 @@ def quick_sort_partition(integers, first, last):
     integers[right] = temp
 
     return right
+
+
+def counting_sort(integers, exp):
+    """Counting sort helper method used with the radix_sort()"""
+    n = len(integers)
+
+    output = [0] * n
+    count = [0] * 10
+
+    for i in range(0, n):
+        index = (integers[i] // exp)
+        count[index % 10] += 1
+
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    i = n - 1
+    while i >= 0:
+        index = integers[i] // exp
+        output[count[index % 10] - 1] = integers[i]
+        count[index % 10] -= 1
+        i -= 1
+
+    for i in range(0, len(integers)):
+        integers[i] = output[i]
+
+
+def radix_sort(integers):
+    """Radix sorting method that utilizes the counting_sort, sorting
+    ach digit starting from the least significant digit to most significant.
+    Uses the counting_sort() method as it's subroutine for sorting.
+    """
+    integers_clone = list(integers)
+    max_integer = max(integers)
+
+    # Do counting sort on each digit in list.
+    exp = 1
+    while max_integer / exp > 0:
+        counting_sort(integers_clone, exp)
+        exp *= 10
+
+    return integers_clone
