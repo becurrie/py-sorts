@@ -61,3 +61,27 @@ class TestSorts(unittest.TestCase):
         clone = self.actual
         quick_sort(clone)
         self.assertEqual(self.expected, clone)
+    
+    def test_insertion(self):
+        """Test the recursive insertion sort function.
+        Uses a clone of self.actual
+        """
+        clone = self.actual[:]
+        insertion_sort(clone)
+        self.assertEqual(self.expected, clone)
+
+    def test_insertion_recur(self):
+        """Test the recursive insertion sort function.
+        Uses a clone of self.actual
+        """
+        clone = self.actual[:]
+        insertion_sort_recur(clone)
+        self.assertEqual(self.expected, clone)
+
+    def test_heap_sort(self):
+        """Test the heap sort function.
+        Uses a clone of self.actual
+        """
+        clone = self.actual[:]
+        heap_sort(clone)
+        self.assertEqual(self.expected, clone)

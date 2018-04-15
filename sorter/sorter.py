@@ -18,7 +18,7 @@ def parse_args(args):
     group.add_argument('-g', '--generate', type=int,
                        help='generate a random list of integers to sort.')
     parser.add_argument('-s', '--sort', type=str, required=True,
-                        choices=['bubble', 'bogo', 'merge', 'selection', 'quick'],
+                        choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'insertion', 'insertion_recur', 'heap'],
                         help='type of sort being performed.')
 
     return parser.parse_args(args)
@@ -90,7 +90,36 @@ def sort(sort_type, integers):
         # Slightly different print call, quick_sort sorts in place.
         # A new list isn't made, args.integers becomes sorted.
         print_results(sort_type, original, integers, final - initial)
+    
+    elif sort_type == 'insertion':
+        initial = timeit.default_timer()
+        original = list(integers)
+        insertion_sort(integers)
+        final = timeit.default_timer()
 
+        # Slightly different print call, quick_sort sorts in place.
+        # A new list isn't made, args.integers becomes sorted.
+        print_results(sort_type, original, integers, final - initial)
+
+    elif sort_type == 'insertion_recur':
+        initial = timeit.default_timer()
+        original = list(integers)
+        insertion_sort_recur(integers)
+        final = timeit.default_timer()
+
+        # Slightly different print call, quick_sort sorts in place.
+        # A new list isn't made, args.integers becomes sorted.
+        print_results(sort_type, original, integers, final - initial)
+    
+    elif sort_type == 'heap':
+        initial = timeit.default_timer()
+        original = list(integers)
+        heap_sort(integers)
+        final = timeit.default_timer()
+
+        # Slightly different print call, quick_sort sorts in place.
+        # A new list isn't made, args.integers becomes sorted.
+        print_results(sort_type, original, integers, final - initial)
 
 def main(args):
     """Main method. build arguments, clear console and parse arguments"""

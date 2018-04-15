@@ -12,6 +12,8 @@ Sort Integers using different sorting algorithms!
 - [Merge](https://www.geeksforgeeks.org/merge-sort/)
 - [Bogo](https://en.wikipedia.org/wiki/Bogosort)
 - [Bubble](https://www.geeksforgeeks.org/bubble-sort/)
+- [Insertion](https://en.wikipedia.org/wiki/Insertion_sort)
+- [Heap](https://en.wikipedia.org/wiki/Heapsort)
 
 #### Arguments
 

@@ -145,3 +145,75 @@ def quick_sort_partition(integers, first, last):
     integers[right] = temp
 
     return right
+
+def insertion_sort(integers):
+    """Iterate over the list of integers. With each iteration,
+    place the new element into its sorted position by shifting
+    over elements to the left of the pointer until the correct
+    location is found for the new element.
+    Sorts the list in place. O(n^2) running time, O(1) space. 
+    """
+    for i in range(1, len(integers)):
+        j = i
+        while integers[j] < integers[j - 1] and j > 0:
+            integers[j], integers[j-1] = integers[j-1], integers[j]
+            j -= 1
+
+def insertion_sort_recur(integers):
+    """Performs insertion sort recursively.
+    """
+    def helper(arr, n):
+        if n > 0:
+            helper(arr, n-1)
+            while arr[n] < arr[n-1] and n > 0:
+                arr[n], arr[n-1] = arr[n-1], arr[n]
+                n -= 1
+
+    helper(integers, len(integers) - 1)
+
+def heap_sort(integers):
+    """Sorts elements by first building an array that fulfills the
+    maxheap property. Once the original array has been modified
+    to be a maxheap, move the 0th element to the end of the array,
+    and fix the maxheap property for the array[0:-1]. Continue
+    moving elements to the end of the heap and reducing the size of
+    the heap until there is only one element left, at which point
+    the array is sorted.
+    """
+    # Reorganize the array so that it has the maxheap property
+    n = len(integers)
+    for i in range(n, -1, -1):
+        max_heapify(integers, i, n)
+
+    # Swap the biggest element with the last element in the array
+    # Then fix the maxheap property on everything except the
+    # last element, which is now in its sorted position.
+    n -= 1
+    while n > 0:
+        integers[0], integers[n] = integers[n], integers[0]
+        max_heapify(integers, 0, n)
+        n -= 1
+
+def max_heapify(arr, i, n):
+    """Corrects a violation of the maxheap property, provided the
+    subtrees on the left and right of arr[i] are max heaps.
+    arr: The heap
+    i: Index of the node to fix
+    n: Size of the heap
+    """
+    largest = i
+    left_child = (i*2) + 1
+    right_child = (i*2) + 2
+
+    # Check whether the node at i fulfills the maxheap property
+    # Requires short-circuit evaluation to make sure the
+    # children don't throw index exceptions
+    if left_child < n and arr[left_child] > arr[largest]:
+        largest = left_child
+    if right_child < n and arr[right_child] > arr[largest]:
+        largest = right_child
+
+    # If violated, repair maxheap property recursively
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        max_heapify(arr, largest, n)
