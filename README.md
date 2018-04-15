@@ -8,33 +8,66 @@ Sort Integers using different sorting algorithms!
 
 #### Sorts Available
 
-- [Selection](https://www.geeksforgeeks.org/selection-sort/)
-- [Merge](https://www.geeksforgeeks.org/merge-sort/)
-- [Bogo](https://en.wikipedia.org/wiki/Bogosort)
-- [Bubble](https://www.geeksforgeeks.org/bubble-sort/)
-- [Insertion](https://en.wikipedia.org/wiki/Insertion_sort)
-- [Heap](https://en.wikipedia.org/wiki/Heapsort)
+1. [Selection](https://en.wikipedia.org/wiki/Selection_sort)
+2. [Merge](https://en.wikipedia.org/wiki/Merge_sort)
+3. [Bogo](https://en.wikipedia.org/wiki/Bogosort)
+4. [Bubble](https://en.wikipedia.org/wiki/Bubble_sort)
+5. [Quick](https://en.wikipedia.org/wiki/Quicksort)
+6. [Radix](https://en.wikipedia.org/wiki/Radix_sort)
+7. [Insertion](https://en.wikipedia.org/wiki/Insertion_sort)
+8. [Heap](https://en.wikipedia.org/wiki/Heapsort)
 
 #### Arguments
 
-- -s, --sort: provide a sort method to use.
-    - selection, bogo, merge, bubble, quick.
-- -i, --integers: include your own list of integers. (ex: ```python -m sorter -i 9 3 2 8 4```
-- -g, --generate: generate a random list of integers. (ex: ```python -m sorter -g 1000```
+| Argument        | Description                                         | Example                            |
+|-----------------|-----------------------------------------------------|------------------------------------|
+| -s / --sort     | type of sort being performed                        | ```python -m sorter -s radix```    |
+| -i / --integers | integer(s) being sorted                             | ```python -m sorter -i 9 34 5 4``` |
+| -g / --generate | generate a random list of integers to sort          | ```python -m sorter -g 1000```     |
+| -l / --list     | displays the original and unsorted lists if present | ```python -m sorter -l```          |
 
-Simply use the console to begin sorting!
+## Examples
 
+```bash
+python -m sorter -i 1 9 8 3 4 5 -s bogo -l
 ```
-python -m sorter -g 100 -s bubble
+
+Output:
 ```
+========================
+Sort Type: [BOGO]
+Original List:
+1, 3, 4, 5, 8, 9
+========================
+Sorted List:
+1, 3, 4, 5, 8, 9
+Time(seconds): 0.0038447857274609663
+========================
+```
+
+***
+
+
+```bash
+python -m sorter -g 10000 -s quick
+```
+
+Output:
+```
+========================
+Sort Type: [QUICK]
+Time(seconds): 0.02460269912110386
+========================
+```
+
 
 ### Caution
 - Be careful when using the **Bogo** sorting algorithm, it shuffles
 an array and checks it sorted iteratively, larger data sets will take a long time (forever).
 
-```python -m sorter -h``` can be used to view the available arguments possible.
+- Specifying an array of size > **650,000** can result in errors due to recursion depth with some sorting algorithms.
 
-### Installing
+## Installing
 
 - Clone repository locally.
 - ```python setup.py install```.
@@ -49,3 +82,14 @@ See also the list of [contributors](https://github.com/becurrie/py-custom-sorter
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Resources
+
+### Sorting Algorithms
+
+- [Interactive Python](http://interactivepython.org)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/)
+
+### Argument Parsing
+
+- [argparse](https://docs.python.org/3.6/library/argparse.html)

@@ -105,6 +105,7 @@ def quick_sort(integers):
     and combine.
     """
     quick_sort_helper(integers, 0, len(integers) - 1)
+    return integers
 
 
 def quick_sort_helper(integers, first, last):
@@ -145,6 +146,49 @@ def quick_sort_partition(integers, first, last):
     integers[right] = temp
 
     return right
+  
+  
+  def counting_sort(integers, exp):
+    """Counting sort helper method used with the radix_sort()"""
+    n = len(integers)
+
+    output = [0] * n
+    count = [0] * 10
+
+    for i in range(0, n):
+        index = (integers[i] // exp)
+        count[index % 10] += 1
+
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    i = n - 1
+    while i >= 0:
+        index = integers[i] // exp
+        output[count[index % 10] - 1] = integers[i]
+        count[index % 10] -= 1
+        i -= 1
+
+    for i in range(0, len(integers)):
+        integers[i] = output[i]
+
+
+def radix_sort(integers):
+    """Radix sorting method that utilizes the counting_sort, sorting
+    ach digit starting from the least significant digit to most significant.
+    Uses the counting_sort() method as it's subroutine for sorting.
+    """
+    integers_clone = list(integers)
+    max_integer = max(integers)
+
+    # Do counting sort on each digit in list.
+    exp = 1
+    while max_integer / exp > 0:
+        counting_sort(integers_clone, exp)
+        exp *= 10
+
+    return integers_clone
+
 
 def insertion_sort(integers):
     """Iterate over the list of integers. With each iteration,
@@ -153,15 +197,18 @@ def insertion_sort(integers):
     location is found for the new element.
     Sorts the list in place. O(n^2) running time, O(1) space. 
     """
-    for i in range(1, len(integers)):
+    integers_clone = list(integers)
+    for i in range(1, len(integers_clone)):
         j = i
-        while integers[j] < integers[j - 1] and j > 0:
-            integers[j], integers[j-1] = integers[j-1], integers[j]
+        while integers_clone[j] < integers_clone[j - 1] and j > 0:
+            integers_clone[j], integers_clone[j-1] = integers_clone[j-1], integers_clone[j]
             j -= 1
+            
+        return integers_clone
 
 def insertion_sort_recur(integers):
-    """Performs insertion sort recursively.
-    """
+    """Performs insertion sort recursively."""
+    integers_clone = list(integers)
     def helper(arr, n):
         if n > 0:
             helper(arr, n-1)
@@ -169,7 +216,8 @@ def insertion_sort_recur(integers):
                 arr[n], arr[n-1] = arr[n-1], arr[n]
                 n -= 1
 
-    helper(integers, len(integers) - 1)
+    helper(integers_clone, len(integers_clone) - 1)
+    return integers_clone
 
 def heap_sort(integers):
     """Sorts elements by first building an array that fulfills the
@@ -180,19 +228,22 @@ def heap_sort(integers):
     the heap until there is only one element left, at which point
     the array is sorted.
     """
+    integers_clone = list(integers)
     # Reorganize the array so that it has the maxheap property
-    n = len(integers)
+    n = len(integers_clone)
     for i in range(n, -1, -1):
-        max_heapify(integers, i, n)
+        max_heapify(intgers_clone, i, n)
 
     # Swap the biggest element with the last element in the array
     # Then fix the maxheap property on everything except the
     # last element, which is now in its sorted position.
     n -= 1
     while n > 0:
-        integers[0], integers[n] = integers[n], integers[0]
-        max_heapify(integers, 0, n)
+        integers_clone[0], integers_clone[n] = integers_clone[n], integers_clone[0]
+        max_heapify(integers_clone, 0, n)
         n -= 1
+        
+    return integers_clone
 
 def max_heapify(arr, i, n):
     """Corrects a violation of the maxheap property, provided the

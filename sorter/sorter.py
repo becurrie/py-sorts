@@ -12,31 +12,46 @@ def parse_args(args):
     """
     parser = argparse.ArgumentParser(description='sort some integers.')
 
+    # Parser group created to take in either one argument.
+    # Integers manually specified or generated on the fly.
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-i', '--integers', type=int, nargs='+',
                        help='integer(s) being sorted.')
     group.add_argument('-g', '--generate', type=int,
                        help='generate a random list of integers to sort.')
+
+    # Specify a specific sorting algorithm.
     parser.add_argument('-s', '--sort', type=str, required=True,
-                        choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'insertion', 'insertion_recur', 'heap'],
+                        choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'radix', 'insertion', 
+                                 'insertion_recur', 'heap'],
                         help='type of sort being performed.')
+
+    # List argument used to display unsorted/sorted list in output.
+    parser.add_argument('-l', '--list', action='store_true',
+                        help='displays the original and unsorted lists if present.')
 
     return parser.parse_args(args)
 
 
-def print_results(sort_type, original_list, sorted_list, time):
+def print_results(args, sorted_list, time):
     """Print an original list, sorted list and time required to sort the original list."""
-    print('\tSort Type: [%s]' % str.upper(sort_type))
-    print('\tOriginal List:')
-    for original_chunk in print_list_chunks(original_list, 20):
-        print('\t' + str(original_chunk)[1:-1])
+    print("\t========================")
+    print('\tSort Type: [%s]' % str.upper(args.sort))
 
-    print('\n\tSorted List:')
-    for sorted_chunk in print_list_chunks(sorted_list, 20):
-        print('\t' + str(sorted_chunk)[1:-1])
+    # Determine whether or not the original and sorted lists will be printed
+    # as part of the results output.
+    if args.list:
+        print('\tOriginal List:')
+        for original_chunk in print_list_chunks(args.integers, 20):
+            print('\t' + str(original_chunk)[1:-1])
+        print("\t========================")
+        print('\tSorted List:')
+        for sorted_chunk in print_list_chunks(sorted_list, 20):
+            print('\t' + str(sorted_chunk)[1:-1])
 
     # Print time required to sort list.
     print('\tTime(seconds): %s' % time)
+    print("\t========================")
 
 
 def print_list_chunks(integer_list, n):
@@ -54,72 +69,36 @@ def generate_integer_list(size):
     return integer_list
 
 
-def sort(sort_type, integers):
+def sort(args):
     """Sort a list of integers based on the type of sort specified."""
-    if sort_type == 'bubble':
-        initial = timeit.default_timer()
-        sorted_list = bubble_sort(integers)
-        final = timeit.default_timer()
-        print_results(sort_type, integers, sorted_list, final - initial)
+    # Create empty sorted_list variable.
+    sorted_list = list()
 
-    elif sort_type == 'bogo':
-        initial = timeit.default_timer()
-        sorted_list = bogo_sort(integers)
-        final = timeit.default_timer()
-        print_results(sort_type, integers, sorted_list, final - initial)
+    # Initial default_timer() method call to grab current time of call.
+    initial = timeit.default_timer()
+    if args.sort == 'bubble':
+        sorted_list = bubble_sort(args.integers)
+    elif args.sort == 'bogo':
+        sorted_list = bogo_sort(args.integers)
+    elif args.sort == 'selection':
+        sorted_list = selection_sort(args.integers)
+    elif args.sort == 'merge':
+        sorted_list = merge_sort(args.integers)
+    elif args.sort == 'quick':
+        sorted_list = quick_sort(args.integers)
+    elif args.sort == 'radix':
+        sorted_list = radix_sort(args.integers)
+    elif args.sort == 'insertion':
+        sorted_list = insertion_sort(args.integers)
+    elif args.sort == 'insertion_recur':
+        sorted_list = insertion_sort_recur(args.integers)
+    elif args.sort == 'heap':
+        sorted_list = heap_sort(args.integers)
 
-    elif sort_type == 'selection':
-        initial = timeit.default_timer()
-        sorted_list = selection_sort(integers)
-        final = timeit.default_timer()
-        print_results(sort_type, integers, sorted_list, final - initial)
-
-    elif sort_type == 'merge':
-        initial = timeit.default_timer()
-        original = list(integers)
-        sorted_list = merge_sort(integers)
-        final = timeit.default_timer()
-        print_results(sort_type, original, sorted_list, final - initial)
-
-    elif sort_type == 'quick':
-        initial = timeit.default_timer()
-        original = list(integers)
-        quick_sort(integers)
-        final = timeit.default_timer()
-
-        # Slightly different print call, quick_sort sorts in place.
-        # A new list isn't made, args.integers becomes sorted.
-        print_results(sort_type, original, integers, final - initial)
+    # Final default_timer() method call to grab time after sort is completed.
+    final = timeit.default_timer()
+    print_results(args, sorted_list, final - initial)
     
-    elif sort_type == 'insertion':
-        initial = timeit.default_timer()
-        original = list(integers)
-        insertion_sort(integers)
-        final = timeit.default_timer()
-
-        # Slightly different print call, quick_sort sorts in place.
-        # A new list isn't made, args.integers becomes sorted.
-        print_results(sort_type, original, integers, final - initial)
-
-    elif sort_type == 'insertion_recur':
-        initial = timeit.default_timer()
-        original = list(integers)
-        insertion_sort_recur(integers)
-        final = timeit.default_timer()
-
-        # Slightly different print call, quick_sort sorts in place.
-        # A new list isn't made, args.integers becomes sorted.
-        print_results(sort_type, original, integers, final - initial)
-    
-    elif sort_type == 'heap':
-        initial = timeit.default_timer()
-        original = list(integers)
-        heap_sort(integers)
-        final = timeit.default_timer()
-
-        # Slightly different print call, quick_sort sorts in place.
-        # A new list isn't made, args.integers becomes sorted.
-        print_results(sort_type, original, integers, final - initial)
 
 def main(args):
     """Main method. build arguments, clear console and parse arguments"""
@@ -136,7 +115,7 @@ def main(args):
         args.integers = generate_integer_list(args.generate)
 
     # Main sort() method call from main.
-    sort(args.sort, args.integers)
+    sort(args)
 
 
 if __name__ == "__main__":
