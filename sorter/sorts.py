@@ -104,87 +104,87 @@ def quick_sort(integers):
     > then pivot are in seconds part, recursively sort both half's
     and combine.
     """
-    quick_sort_helper(integers, 0, len(integers) - 1)
-    return integers
+    integers_clone = list(integers)
 
+    def helper(arr, first, last):
+        """Quick sort helper method for finding pivot/split points in list."""
+        if first < last:
+            split = partition(arr, first, last)
 
-def quick_sort_helper(integers, first, last):
-    """Small helper method for calling and recursively finding
-    pivot/split points.
-    """
-    if first < last:
-        split = quick_sort_partition(integers, first, last)
+            helper(arr, first, split - 1)
+            helper(arr, split + 1, last)
 
-        quick_sort_helper(integers, first, split - 1)
-        quick_sort_helper(integers, split + 1, last)
+    def partition(arr, first, last):
+        """Generate a partition point for the given array."""
+        pivot_value = arr[first]
 
+        left = first + 1
+        right = last
 
-def quick_sort_partition(integers, first, last):
-    """Generate a correct partition point for the given list of integers."""
-    pivot_value = integers[first]
+        done = False
+        while not done:
+            while left <= right and arr[left] <= pivot_value:
+                left += 1
 
-    left = first + 1
-    right = last
+            while arr[right] >= pivot_value and right >= left:
+                right -= 1
 
-    done = False
-    while not done:
-        while left <= right and integers[left] <= pivot_value:
-            left += 1
+            if right < left:
+                done = True
+            else:
+                temp = arr[left]
+                arr[left] = arr[right]
+                arr[right] = temp
 
-        while integers[right] >= pivot_value and right >= left:
-            right -= 1
+        temp = arr[first]
+        arr[first] = arr[right]
+        arr[right] = temp
 
-        if right < left:
-            done = True
-        else:
-            temp = integers[left]
-            integers[left] = integers[right]
-            integers[right] = temp
+        return right
 
-    temp = integers[first]
-    integers[first] = integers[right]
-    integers[right] = temp
-
-    return right
-  
-  
-def counting_sort(integers, exp):
-    """Counting sort helper method used with the radix_sort()"""
-    n = len(integers)
-
-    output = [0] * n
-    count = [0] * 10
-
-    for i in range(0, n):
-        index = (integers[i] // exp)
-        count[index % 10] += 1
-
-    for i in range(1, 10):
-        count[i] += count[i - 1]
-
-    i = n - 1
-    while i >= 0:
-        index = integers[i] // exp
-        output[count[index % 10] - 1] = integers[i]
-        count[index % 10] -= 1
-        i -= 1
-
-    for i in range(0, len(integers)):
-        integers[i] = output[i]
+    helper(integers_clone, 0, len(integers_clone) - 1)
+    return integers_clone
 
 
 def radix_sort(integers):
     """Radix sorting method that utilizes the counting_sort, sorting
     ach digit starting from the least significant digit to most significant.
-    Uses the counting_sort() method as it's subroutine for sorting.
+    Uses the helper method as it's subroutine for sorting.
     """
     integers_clone = list(integers)
+
+    def helper(arr, e):
+        """Radix sort helper method used with the radix_sort() implementing
+        a counting sort method/algorithm.
+        """
+        n = len(arr)
+
+        output = [0] * n
+        count = [0] * 10
+
+        for i in range(0, n):
+            index = (arr[i] // e)
+            count[index % 10] += 1
+
+        for i in range(1, 10):
+            count[i] += count[i - 1]
+
+        i = n - 1
+        while i >= 0:
+            index = arr[i] // e
+            output[count[index % 10] - 1] = arr[i]
+            count[index % 10] -= 1
+            i -= 1
+
+        for i in range(0, len(arr)):
+            arr[i] = output[i]
+
     max_integer = max(integers)
 
     # Do counting sort on each digit in list.
     exp = 1
     while max_integer / exp > 0:
-        counting_sort(integers_clone, exp)
+        helper(integers_clone, exp)
         exp *= 10
 
     return integers_clone
@@ -207,7 +207,7 @@ def insertion_sort(integers):
     return integers_clone
 
 
-def insertion_sort_recur(integers):
+def insertion_sort_recursive(integers):
     """Performs insertion sort recursively."""
     integers_clone = list(integers)
 
@@ -232,6 +232,7 @@ def heap_sort(integers):
     the array is sorted.
     """
     integers_clone = list(integers)
+
     # Reorganize the array so that it has the maxheap property
     n = len(integers_clone)
     for i in range(n, -1, -1):

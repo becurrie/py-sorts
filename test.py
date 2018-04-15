@@ -18,9 +18,18 @@ class TestParsing(unittest.TestCase):
         self.assertTrue(parser.generate)
 
     def test_sort(self):
-        """Test the required sort argument."""
+        """Test the optional one of: sort argument."""
         parser = parse_args(['-g', '10', '-s', 'bubble'])
         self.assertTrue(parser.sort)
+
+    def test_allsorts(self):
+        """Test the optional one of: allsorts argument."""
+        parser = parse_args(['-g', '10', '-a'])
+        self.assertTrue(parser.allsorts)
+        self.assertEqual(True, parser.allsorts)
+
+        parser = parse_args(['-g', '10', '-s', 'bubble'])
+        self.assertEqual(False, parser.allsorts)
 
     def test_list(self):
         """Test the optional list argument."""
@@ -78,9 +87,9 @@ class TestSorts(unittest.TestCase):
         integers = insertion_sort(self.actual)
         self.assertEqual(self.expected, integers)
 
-    def test_insertion_recur(self):
+    def test_insertion_recursive(self):
         """Test the recursive insertion sort function."""
-        integers = insertion_sort_recur(self.actual)
+        integers = insertion_sort_recursive(self.actual)
         self.assertEqual(self.expected, integers)
 
     def test_heap_sort(self):

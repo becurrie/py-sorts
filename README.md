@@ -1,10 +1,12 @@
-[![GitHub version](https://badge.fury.io/gh/becurrie%2Fpy-custom-sorters.svg)](https://badge.fury.io/gh/becurrie%2Fpy-custom-sorters)
+[![GitHub version](https://badge.fury.io/gh/becurrie%2Fpy-custom-sorters.svg)](https://github.com/becurrie/sorters-py/releases)
 
-# Py Custom Sorters
+# sorters-py
 
 Sort Integers using different sorting algorithms!
 
 ## Getting Started
+
+Check the [releases](https://github.com/becurrie/sorters-py/releases) section to find the latest working zip/tar.
 
 #### Sorts Available
 
@@ -26,6 +28,7 @@ Sort Integers using different sorting algorithms!
 | -i / --integers | integer(s) being sorted                             | ```python -m sorter -i 9 34 5 4``` |
 | -g / --generate | generate a random list of integers to sort          | ```python -m sorter -g 1000```     |
 | -l / --list     | displays the original and unsorted lists if present | ```python -m sorter -l```          |
+| -a / --allsorts | perform sort on each algorithm, except bogo sort    | ```python -m sorter -a```          |
 
 ## Examples
 
@@ -61,15 +64,12 @@ Time(seconds): 0.02460269912110386
 ========================
 ```
 
-
 ### Caution
 
 - Be careful when using the **Bogo** sorting algorithm, it shuffles
 an array and checks it's been sorted, shuffling infinitely until list is sorted. larger data sets will take a long time (forever).
 
-- Specifying an array of size > **650,000** will result in a recustion depth exception when using the quick sort algoruithm
-
-- Specifying an array of size > **992** will result in a recursion depth exception when using the recursive insertion sort algorithm.
+- Some algorithms use recursive sub routines to sort, this can lead to RecursionErrors if the data set is very large.
 
 ## Installing
 
