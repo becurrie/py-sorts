@@ -14,6 +14,8 @@ Sort Integers using different sorting algorithms!
 4. [Bubble](https://en.wikipedia.org/wiki/Bubble_sort)
 5. [Quick](https://en.wikipedia.org/wiki/Quicksort)
 6. [Radix](https://en.wikipedia.org/wiki/Radix_sort)
+7. [Insertion](https://en.wikipedia.org/wiki/Insertion_sort)
+8. [Heap](https://en.wikipedia.org/wiki/Heapsort)
 
 #### Arguments
 

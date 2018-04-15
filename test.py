@@ -64,14 +64,26 @@ class TestSorts(unittest.TestCase):
         self.assertEqual(self.expected, integers)
 
     def test_quick(self):
-        """Test the quick_sort function. This test is slightly different
-        because the quick_sort method sorts in place and doesn't return
-        a new sorted list.
-        """
+        """Test the quick_sort function."""
         integers = quick_sort(self.actual)
         self.assertEqual(self.expected, integers)
-
+        
     def test_radix(self):
         """Test the radix_sort function."""
         integers = radix_sort(self.actual)
+        self.assertEqual(self.expected, integers)
+    
+    def test_insertion(self):
+        """Test the recursive insertion sort function."""
+        integers = insertion_sort(self.actual)
+        self.assertEqual(self.expected, integers)
+
+    def test_insertion_recur(self):
+        """Test the recursive insertion sort function."""
+        integers = insertion_sort_recur(self.actual)
+        self.assertEqual(self.expected, integers)
+
+    def test_heap_sort(self):
+        """Test the heap sort function."""
+        integers = heap_sort(clone)
         self.assertEqual(self.expected, integers)

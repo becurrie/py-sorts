@@ -22,7 +22,8 @@ def parse_args(args):
 
     # Specify a specific sorting algorithm.
     parser.add_argument('-s', '--sort', type=str, required=True,
-                        choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'radix'],
+                        choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'radix', 'insertion', 
+                                 'insertion_recur', 'heap'],
                         help='type of sort being performed.')
 
     # List argument used to display unsorted/sorted list in output.
@@ -87,11 +88,17 @@ def sort(args):
         sorted_list = quick_sort(args.integers)
     elif args.sort == 'radix':
         sorted_list = radix_sort(args.integers)
+    elif args.sort == 'insertion':
+        sorted_list = insertion_sort(args.integers)
+    elif args.sort == 'insertion_recur':
+        sorted_list = insertion_sort_recur(args.integers)
+    elif args.sort == 'heap':
+        sorted_list = heap_sort(args.integers)
 
     # Final default_timer() method call to grab time after sort is completed.
     final = timeit.default_timer()
     print_results(args, sorted_list, final - initial)
-
+    
 
 def main(args):
     """Main method. build arguments, clear console and parse arguments"""
