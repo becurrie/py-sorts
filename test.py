@@ -85,5 +85,5 @@ class TestSorts(unittest.TestCase):
 
     def test_heap_sort(self):
         """Test the heap sort function."""
-        integers = heap_sort(clone)
+        integers = heap_sort(self.actual)
         self.assertEqual(self.expected, integers)

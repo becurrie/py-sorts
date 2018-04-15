@@ -148,7 +148,7 @@ def quick_sort_partition(integers, first, last):
     return right
   
   
-  def counting_sort(integers, exp):
+def counting_sort(integers, exp):
     """Counting sort helper method used with the radix_sort()"""
     n = len(integers)
 
@@ -204,11 +204,13 @@ def insertion_sort(integers):
             integers_clone[j], integers_clone[j-1] = integers_clone[j-1], integers_clone[j]
             j -= 1
             
-        return integers_clone
+    return integers_clone
+
 
 def insertion_sort_recur(integers):
     """Performs insertion sort recursively."""
     integers_clone = list(integers)
+
     def helper(arr, n):
         if n > 0:
             helper(arr, n-1)
@@ -218,6 +220,7 @@ def insertion_sort_recur(integers):
 
     helper(integers_clone, len(integers_clone) - 1)
     return integers_clone
+
 
 def heap_sort(integers):
     """Sorts elements by first building an array that fulfills the
@@ -232,7 +235,7 @@ def heap_sort(integers):
     # Reorganize the array so that it has the maxheap property
     n = len(integers_clone)
     for i in range(n, -1, -1):
-        max_heapify(intgers_clone, i, n)
+        max_heapify(integers_clone, i, n)
 
     # Swap the biggest element with the last element in the array
     # Then fix the maxheap property on everything except the
@@ -244,6 +247,7 @@ def heap_sort(integers):
         n -= 1
         
     return integers_clone
+
 
 def max_heapify(arr, i, n):
     """Corrects a violation of the maxheap property, provided the

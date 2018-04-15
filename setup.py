@@ -4,7 +4,7 @@ setup(
     name='sorter',
     author_email='brettecurrie@gmail.com',
     author='becurrie',
-    version='0.1.3',
+    version='0.1.4',
     description='sort integers with different sorting algorithms.',
     packages=find_packages(),
     py_modules=['sorter.sorter'],

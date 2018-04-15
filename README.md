@@ -15,7 +15,8 @@ Sort Integers using different sorting algorithms!
 5. [Quick](https://en.wikipedia.org/wiki/Quicksort)
 6. [Radix](https://en.wikipedia.org/wiki/Radix_sort)
 7. [Insertion](https://en.wikipedia.org/wiki/Insertion_sort)
-8. [Heap](https://en.wikipedia.org/wiki/Heapsort)
+8. [Recursive Insertion](https://en.wikipedia.org/wiki/Insertion_sort)
+9. [Heap](https://en.wikipedia.org/wiki/Heapsort)
 
 #### Arguments
 
@@ -75,7 +76,8 @@ an array and checks it sorted iteratively, larger data sets will take a long tim
 
 ## Authors
 
-* **Brett Currie** - [becurrie](https://github.com/becurrie)
+* [**becurrie**](https://github.com/becurrie)
+* [**garroadran**](https://github.com/garroadran) - Heap, Insertion, Recursive Insertion algorithms.
 
 See also the list of [contributors](https://github.com/becurrie/py-custom-sorters/contributors) who participated in this project.
 
