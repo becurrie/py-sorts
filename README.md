@@ -38,7 +38,7 @@ Output:
 ========================
 Sort Type: [BOGO]
 Original List:
-1, 3, 4, 5, 8, 9
+1, 9, 8, 3, 4, 5
 ========================
 Sorted List:
 1, 3, 4, 5, 8, 9
@@ -63,10 +63,13 @@ Time(seconds): 0.02460269912110386
 
 
 ### Caution
-- Be careful when using the **Bogo** sorting algorithm, it shuffles
-an array and checks it sorted iteratively, larger data sets will take a long time (forever).
 
-- Specifying an array of size > **650,000** can result in errors due to recursion depth with some sorting algorithms.
+- Be careful when using the **Bogo** sorting algorithm, it shuffles
+an array and checks it's been sorted, shuffling infinitely until list is sorted. larger data sets will take a long time (forever).
+
+- Specifying an array of size > **650,000** will result in a recustion depth exception when using the quick sort algoruithm
+
+- Specifying an array of size > **992** will result in a recursion depth exception when using the recursive insertion sort algorithm.
 
 ## Installing
 
