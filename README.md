@@ -38,15 +38,12 @@ python -m sorter -i 1 9 8 3 4 5 -s bogo -l
 
 Output:
 ```
-========================
-Sort Type: [BOGO]
+Algorithm: [BOGO]
 Original List:
 1, 9, 8, 3, 4, 5
-========================
 Sorted List:
 1, 3, 4, 5, 8, 9
 Time(seconds): 0.0038447857274609663
-========================
 ```
 
 ***
@@ -58,10 +55,8 @@ python -m sorter -g 10000 -s quick
 
 Output:
 ```
-========================
 Sort Type: [QUICK]
 Time(seconds): 0.02460269912110386
-========================
 ```
 
 ### Caution
