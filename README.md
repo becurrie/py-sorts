@@ -85,7 +85,7 @@ an array and checks it's been sorted, shuffling infinitely until list is sorted.
 - New tests can be added to the `run_all.py` file located at (/tests).
 
 - To run automated tests:
-    - ```python -m unittest run_all```
+    - ```python -m run_all```
 
 
 

@@ -101,3 +101,7 @@ class TestSorts(unittest.TestCase):
         """Test the heap sort function."""
         integers = heap_sort(self.actual)
         self.assertEqual(self.expected, integers)
+
+
+if __name__ == '__main__':
+    unittest.main()
