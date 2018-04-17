@@ -1,6 +1,6 @@
 [![GitHub version](https://badge.fury.io/gh/becurrie%2Fpy-custom-sorters.svg)](https://github.com/becurrie/sorters-py/releases)
 
-# py-sorts (0.2.0)
+# py-sorts
 
 Sort Integers using different sorting algorithms!
 
