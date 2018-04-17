@@ -1,9 +1,15 @@
+"""py_sorter.sorter: provides argument parsing and entry point main()."""
+
+__version__ = "0.2.0"
+
+
 import argparse
 import os
 import sys
 import timeit
 
-from sorter.sorts import *
+from random import randint
+from .sorts import *
 
 
 def parse_args(args):
@@ -72,7 +78,7 @@ def generate_integer_list(size):
     """Generate a list of Integers between specified size value."""
     integer_list = list()
     for i in range(0, size):
-        integer_list.append(random.randint(0, 1000))
+        integer_list.append(randint(0, 1000))
 
     return integer_list
 
@@ -139,9 +145,9 @@ def all_sorts(args):
         sort(args)
 
 
-def main(args):
+def main():
     """Main method. build arguments, clear console and parse arguments"""
-    args = parse_args(args[1:])
+    args = parse_args(sys.argv[1:])
 
     # Clear system terminal based on operating system name.
     if os.name == 'posix':
@@ -158,8 +164,3 @@ def main(args):
         all_sorts(args)
     else:
         sort(args)
-
-
-if __name__ == "__main__":
-    # Allow import run through __name__ = __main__ idiom.
-    main(sys.argv)

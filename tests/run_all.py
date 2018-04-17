@@ -1,7 +1,12 @@
+"""tests.run_all: Runs all tests for py_sorter console application."""
+import os
+import sys
 import unittest
 
-from sorter.sorts import *
-from sorter.sorter import parse_args
+sys.path.insert(0, os.path.abspath('..'))
+
+from py_sorter.sorts import *
+from py_sorter.sorter import parse_args
 
 
 class TestParsing(unittest.TestCase):
@@ -76,12 +81,12 @@ class TestSorts(unittest.TestCase):
         """Test the quick_sort function."""
         integers = quick_sort(self.actual)
         self.assertEqual(self.expected, integers)
-        
+
     def test_radix(self):
         """Test the radix_sort function."""
         integers = radix_sort(self.actual)
         self.assertEqual(self.expected, integers)
-    
+
     def test_insertion(self):
         """Test the recursive insertion sort function."""
         integers = insertion_sort(self.actual)

@@ -1,3 +1,6 @@
+"""py_sorter.sorts: sorts module containing all sort algorithm logic."""
+
+
 import random
 
 

@@ -1,6 +1,6 @@
 [![GitHub version](https://badge.fury.io/gh/becurrie%2Fpy-custom-sorters.svg)](https://github.com/becurrie/sorters-py/releases)
 
-# sorters-py
+# py-sorts (0.2.0)
 
 Sort Integers using different sorting algorithms!
 
@@ -33,7 +33,7 @@ Check the [releases](https://github.com/becurrie/sorters-py/releases) section to
 ## Examples
 
 ```bash
-python -m sorter -i 1 9 8 3 4 5 -s bogo -l
+python -m py_sorter -i 1 9 8 3 4 5 -s bogo -l
 ```
 
 Output:
@@ -50,7 +50,7 @@ Time(seconds): 0.0038447857274609663
 
 
 ```bash
-python -m sorter -g 10000 -s quick
+python -m py_sorter -g 10000 -s quick
 ```
 
 Output:
@@ -70,7 +70,24 @@ an array and checks it's been sorted, shuffling infinitely until list is sorted.
 
 - Clone repository locally.
 - ```python setup.py install```.
-- Access module from console with ```python -m sorter```.
+- Access module from console with ```python -m py_sorter```.
+
+## Development
+
+### Launching
+
+- While developing, inside root (/py_sorter) you can use two options to invoke:
+    - ```python sorter-runner.py [args]```
+    - ```python -m py_sorter [args]```
+
+### Testing
+
+- New tests can be added to the `run_all.py` file located at (/tests).
+
+- To run automated tests:
+    - ```python -m unittest run_all```
+
+
 
 ## Authors
 
