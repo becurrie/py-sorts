@@ -11,7 +11,7 @@ Check the [releases](https://github.com/becurrie/sorters-py/releases) section to
 ### ```python -m py_sorter [args]```
 
 #### Sorts Available
-|                                                           |                                                                     |                                                   |
+| Sorts Available                                           |                                                                     |                                                   |
 |-----------------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------|
 | [Selection](https://en.wikipedia.org/wiki/Selection_sort) | [Merge](https://en.wikipedia.org/wiki/Merge_sort)                   | [Bogo](https://en.wikipedia.org/wiki/Bogosort)    |
 | [Bubble](https://en.wikipedia.org/wiki/Bubble_sort)       | [Quick](https://en.wikipedia.org/wiki/Quicksort)                    | [Radix](https://en.wikipedia.org/wiki/Radix_sort) |
