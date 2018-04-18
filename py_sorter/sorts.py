@@ -2,6 +2,7 @@
 
 
 import random
+import sys
 
 
 def bubble_sort(integers):
@@ -85,11 +86,23 @@ def bogo_sort(integers):
     integers in the list until a sorted list is created.
     """
     integers_clone = list(integers)
+    shuffles = 0
+
+    def print_helper(amount):
+        """Helper method for outputting the amount of times that the
+        list being sorted has been shuffled during a bogo sort.
+        """
+        sys.stdout.write('\r\tShuffles: ' + '{:,}'.format(amount))
+        sys.stdout.flush()
 
     is_sorted = False
-
     while not is_sorted:
         random.shuffle(integers_clone)
+        shuffles += 1
+
+        if shuffles % 1000 == 0:
+            print_helper(shuffles)
+
         for i in range(len(integers_clone) - 1):
             if integers_clone[i] > integers_clone[i + 1]:
                 is_sorted = False
@@ -97,6 +110,8 @@ def bogo_sort(integers):
             else:
                 is_sorted = True
 
+    print_helper(shuffles)
+    print()
     return integers_clone
 
 
