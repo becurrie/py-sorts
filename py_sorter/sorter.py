@@ -159,7 +159,7 @@ def sort(args):
     # Check for compare flag and get the time taken for the default sorted() call on list.
     if args.compare:
         default_initial = timeit.default_timer()
-        default_list = sorted(original_list)
+        sorted(original_list)
         default_final = timeit.default_timer()
         args.compare_time = default_final - default_initial
 
