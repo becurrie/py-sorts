@@ -1,11 +1,10 @@
 """py_sorter.sorter: provides argument parsing and entry point main()."""
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 
 import argparse
 import os
-import sys
 import timeit
 
 from random import randint
@@ -69,13 +68,16 @@ def print_results(args, sorted_list, time):
 
 
 def print_list_chunks(integer_list, n):
-    """Simple helper method to print out a list in chunks."""
+    """Simple helper method to print out a list in chunks. This allows
+    the console output to never surpass a specific width. Giving a cleaner
+    output if the original/sorted lists are being printed.
+    """
     for i in range(0, len(integer_list), n):
         yield integer_list[i:i + n]
 
 
 def generate_integer_list(size):
-    """Generate a list of Integers between specified size value."""
+    """Generate a list of integers between specified size value."""
     integer_list = list()
     for i in range(0, size):
         integer_list.append(randint(0, 1000))
@@ -87,48 +89,42 @@ def sort(args):
     """Sort a list of integers based on the type of sort specified. Any recursive
     algorithms use a try/except to print an error if recursive depth is reached.
     """
-    # Create empty sorted_list variable.
+    # Create a clone of the initial args.integers property.
     original_list = list(args.integers)
+
+    # Empty sorted_list that will hold list after sort method returns.
     sorted_list = list()
 
     # Initial default_timer() method call to grab current time of call.
     initial = timeit.default_timer()
     if args.sort == 'bubble':
         sorted_list = bubble_sort(original_list)
-
     elif args.sort == 'bogo':
         sorted_list = bogo_sort(original_list)
-
     elif args.sort == 'selection':
         sorted_list = selection_sort(original_list)
-
     elif args.sort == 'merge':
         sorted_list = merge_sort(original_list)
-
     elif args.sort == 'quick':
         try:
             sorted_list = quick_sort(original_list)
         except RecursionError as e:
             print_error(args, e.args[0])
             return
-
     elif args.sort == 'radix':
         try:
             sorted_list = radix_sort(original_list)
         except RecursionError as e:
             print_error(args, e.args[0])
             return
-
     elif args.sort == 'insertion':
         sorted_list = insertion_sort(original_list)
-
     elif args.sort == 'insertion_recursive':
         try:
             sorted_list = insertion_sort_recursive(original_list)
         except RecursionError as e:
             print_error(args, e.args[0])
             return
-
     elif args.sort == 'heap':
         sorted_list = heap_sort(original_list)
 

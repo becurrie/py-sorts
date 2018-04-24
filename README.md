@@ -19,13 +19,13 @@ Check the [releases](https://github.com/becurrie/sorters-py/releases) section to
 
 #### Arguments
 
-| Argument        | Description                                                | Example                            |
-|-----------------|------------------------------------------------------------|------------------------------------|
-| -s / --sort     | type of sort being performed on list                       | ```python -m sorter -s radix```    |
-| -i / --integers | provide a list of integers to be sorted                    | ```python -m sorter -i 9 34 5 4``` |
-| -g / --generate | generate a random list of integers to be sorted            | ```python -m sorter -g 1000```     |
-| -l / --list     | displays the original/sorted lists                         | ```python -m sorter -l```          |
-| -a / --allsorts | perform sort on list with each algorithm, except bogo sort | ```python -m sorter -a```          |
+| Argument        | Description                                                | Example                               |
+|-----------------|------------------------------------------------------------|---------------------------------------|
+| -s / --sort     | type of sort being performed on list                       | ```python -m py_sorter -s radix```    |
+| -i / --integers | provide a list of integers to be sorted                    | ```python -m py_sorter -i 9 34 5 4``` |
+| -g / --generate | generate a random list of integers to be sorted            | ```python -m py_sorter -g 1000```     |
+| -l / --list     | displays the original/sorted lists                         | ```python -m py_sorter -l```          |
+| -a / --allsorts | perform sort on list with each algorithm, except bogo sort | ```python -m py_sorter -a```          |
 
 ## Examples
 
@@ -68,7 +68,7 @@ an array and checks it's been sorted, shuffling infinitely until list is sorted.
 
 - Clone repository locally.
 - ```python setup.py install```.
-- Access module from console with ```python -m py_sorter```.
+- Access module from console with ```python -m py_sorter [args]```.
 
 ## Development
 
