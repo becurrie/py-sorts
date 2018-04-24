@@ -6,7 +6,7 @@ Sort Integers using different sorting algorithms!
 
 ## Getting Started
 
-Check the [releases](https://github.com/becurrie/sorters-py/releases) section to find the latest working zip/tar.
+Check the [releases](https://github.com/becurrie/py-sorts/releases) section to find the latest working zip/tar.
 
 ### ```python -m py_sorter [args]```
 
@@ -19,30 +19,33 @@ Check the [releases](https://github.com/becurrie/sorters-py/releases) section to
 
 #### Arguments
 
-| Argument        | Description                                                | Example                               |
-|-----------------|------------------------------------------------------------|---------------------------------------|
-| -s / --sort     | type of sort being performed on list                       | ```python -m py_sorter -s radix```    |
-| -i / --integers | provide a list of integers to be sorted                    | ```python -m py_sorter -i 9 34 5 4``` |
-| -g / --generate | generate a random list of integers to be sorted            | ```python -m py_sorter -g 1000```     |
-| -l / --list     | displays the original/sorted lists                         | ```python -m py_sorter -l```          |
-| -a / --allsorts | perform sort on list with each algorithm, except bogo sort | ```python -m py_sorter -a```          |
+| Argument        | Description                                                                          | Example                               |
+|-----------------|--------------------------------------------------------------------------------------|---------------------------------------|
+| -s / --sort     | type of sort being performed on list.                                                | ```python -m py_sorter -s radix```    |
+| -i / --integers | provide a list of integers to be sorted.                                             | ```python -m py_sorter -i 9 34 5 4``` |
+| -g / --generate | generate a random list of integers to be sorted.                                     | ```python -m py_sorter -g 1000```     |
+| -l / --list     | displays the original/sorted lists.                                                  | ```python -m py_sorter -l```          |
+| -a / --allsorts | perform sort on list with each algorithm, except bogo sort.                          | ```python -m py_sorter -a```          |
+| -c / --compare  | display a time comparison between chosen sort and pythons default sorted() function. | ```python -m py_sorter -c```          |
 
 ## Examples
 
 ```bash
-python -m py_sorter --generate 8 --sort bogo --list
+python -m py_sorter -g 8 -s bogo -l -c
 ```
 
 Output:
 
 ```
-Shuffles: 20,222
-Algorithm: [BOGO]
+Shuffles: 63,257
+Algorithm: [bogo]
 Original List:
-126, 61, 946, 874, 990, 488, 601, 787
+468, 846, 801, 976, 261, 641, 72, 698
 Sorted List:
-61, 126, 488, 601, 787, 874, 946, 990
-Time(seconds): 0.10767681062733224
+72, 261, 468, 641, 698, 801, 846, 976
+Time(seconds) bogo: 0.3453168464965863
+Time(seconds) sorted(): 3.5189852184980275e-06
+bogo was 0.3453133275113678 seconds slower.
 ```
 ***
 
@@ -53,8 +56,8 @@ python -m py_sorter --generate 10000 --sort quick
 Output:
 
 ```
-Algorithm: [QUICK]
-Time(seconds): 0.026681231351216618
+Algorithm: [quick]
+Time(seconds): 0.02490532463518387
 ```
 
 ### Caution

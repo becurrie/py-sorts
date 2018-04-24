@@ -1,7 +1,8 @@
-"""py_sorter.sorter: provides argument parsing and entry point main()."""
-
-__version__ = "0.2.1"
-
+"""py_sorter.sorter: provides argument parsing and entry point main().
+Any calls to the sorts methods are called from here based on the -s/--sort
+argument specified by the user.
+"""
+__version__ = "0.3.0"
 
 import argparse
 import os
@@ -17,7 +18,7 @@ def parse_args(args):
     """
     parser = argparse.ArgumentParser(description='sort some integers.')
 
-    # Parser group created to take in either one argument.
+    # Parser group created to take in either argument. (-i or -g).
     # Integers manually specified or generated on the fly.
     integers_group = parser.add_mutually_exclusive_group(required=True)
     integers_group.add_argument('-i', '--integers', type=int, nargs='+',
@@ -25,8 +26,8 @@ def parse_args(args):
     integers_group.add_argument('-g', '--generate', type=int,
                                 help='generate a random list of integers to sort.')
 
+    # Specific sort algorithm or use all sort algorithms.
     sorting_group = parser.add_mutually_exclusive_group(required=True)
-    # Specify a specific sorting algorithm.
     sorting_group.add_argument('-s', '--sort', type=str,
                                choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'radix', 'insertion',
                                         'insertion_recursive', 'heap'],
@@ -38,19 +39,23 @@ def parse_args(args):
     parser.add_argument('-l', '--list', action='store_true',
                         help='displays the original and unsorted lists if present.')
 
+    # Compare argument to display the time difference compared to the default python sorted() function.
+    parser.add_argument('-c', '--compare', action='store_true',
+                        help='display the difference in time compared to pythons default \'sorted()\' function.')
+
     return parser.parse_args(args)
 
 
 def print_error(args, error):
     """Print an error to the screen when a sort fails."""
-    print('\tAlgorithm: [%s]' % str.upper(args.sort))
+    print('\tAlgorithm: [%s]' % str(args.sort))
     print("\terror occurred while sorting: %s" % error)
     print("\t")
 
 
 def print_results(args, sorted_list, time):
     """Print an original list, sorted list and time required to sort the original list."""
-    print('\tAlgorithm: [%s]' % str.upper(args.sort))
+    print('\tAlgorithm: [%s]' % str(args.sort))
 
     # Determine whether or not the original and sorted lists will be printed
     # as part of the results output.
@@ -62,9 +67,29 @@ def print_results(args, sorted_list, time):
         for sorted_chunk in print_list_chunks(sorted_list, 20):
             print('\t' + str(sorted_chunk)[1:-1])
 
-    # Print time required to sort list.
-    print('\tTime(seconds): %s' % time)
+    # Check for the --compare flag being present, and print out the difference
+    # between this results time and the default sorted() function time.
+    if args.compare:
+        print('\tTime(seconds) %s: %s' % (args.sort, time))
+        print('\tTime(seconds) sorted(): %s' % args.compare_time)
+        print('\t%s' % calculate_compare_time_difference(time, args.compare_time, args.sort))
+    else:
+        print('\tTime(seconds): %s' % time)
+
     print('\t')
+
+
+def calculate_compare_time_difference(algorithm_time, default_time, algorithm):
+    """Calculate the difference between a custom algorithms time taken to sort, and
+    pythons sorted() function time taken to sort the same list, returns a readable string
+    detailing which was faster.
+    """
+    difference = algorithm_time - default_time
+
+    if difference > 0:
+        return '%s was %s seconds slower.' % (algorithm, difference)
+    else:
+        return '%s was %s seconds faster.' % (algorithm, -difference)
 
 
 def print_list_chunks(integer_list, n):
@@ -130,6 +155,14 @@ def sort(args):
 
     # Final default_timer() method call to grab time after sort is completed.
     final = timeit.default_timer()
+
+    # Check for compare flag and get the time taken for the default sorted() call on list.
+    if args.compare:
+        default_initial = timeit.default_timer()
+        default_list = sorted(original_list)
+        default_final = timeit.default_timer()
+        args.compare_time = default_final - default_initial
+
     print_results(args, sorted_list, final - initial)
 
 
