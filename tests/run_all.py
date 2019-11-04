@@ -109,6 +109,11 @@ class TestSorts(unittest.TestCase):
         integers = merge_sort(self.actual)
         self.assertEqual(self.expected, integers)
 
+    def test_shell(self):
+        """Test the shell_sort function."""
+        integers = shell_sort(self.actual)
+        self.assertEqual(self.expected, integers)
+
     def test_quick(self):
         """Test the quick_sort function."""
         integers = quick_sort(self.actual)
