@@ -295,7 +295,8 @@ def max_heapify(arr, i, n):
 def shell_sort(integers):
     """The idea of shellSort is to allow exchange of far items. 
     An h-sorted array is made for a large value of h. 
-    We keep reducing the value of h until it becomes 1. """
+    We keep reducing the value of h until it becomes 1.
+    """
     integers_clone = list(integers)
     
     #length of the list
