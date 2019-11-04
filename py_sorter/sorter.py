@@ -30,7 +30,7 @@ def parse_args(args):
     sorting_group = parser.add_mutually_exclusive_group(required=True)
     sorting_group.add_argument('-s', '--sort', type=str,
                                choices=['bubble', 'bogo', 'merge', 'selection', 'quick', 'radix', 'insertion',
-                                        'insertion_recursive', 'heap','shell'],
+                                        'insertion_recursive', 'heap', 'shell'],
                                help='type of sort being performed.')
     sorting_group.add_argument('-a', '--allsorts', action='store_true',
                                help='run all sort methods (excluding bogo sort).')
