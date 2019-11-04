@@ -13,7 +13,7 @@ Check the [releases](https://github.com/becurrie/py-sorts/releases) section to f
 #### Sorts Available
 | Sorts Available                                           |                                                                     |                                                   |
 |-----------------------------------------------------------|---------------------------------------------------------------------|---------------------------------------------------|
-| [Selection](https://en.wikipedia.org/wiki/Selection_sort) | [Merge](https://en.wikipedia.org/wiki/Merge_sort)                   | [Bogo](https://en.wikipedia.org/wiki/Bogosort)    |
+| [Selection](https://en.wikipedia.org/wiki/Selection_sort) | [Merge](https://en.wikipedia.org/wiki/Merge_sort)                   | [Bogo](https://en.wikipedia.org/wiki/Bogosort)    |   [Shell](https://en.wikipedia.org/wiki/Shellsort) |
 | [Bubble](https://en.wikipedia.org/wiki/Bubble_sort)       | [Quick](https://en.wikipedia.org/wiki/Quicksort)                    | [Radix](https://en.wikipedia.org/wiki/Radix_sort) |
 | [Insertion](https://en.wikipedia.org/wiki/Insertion_sort) | [Recursive Insertion](https://en.wikipedia.org/wiki/Insertion_sort) | [Heap](https://en.wikipedia.org/wiki/Heapsort)    |
 
