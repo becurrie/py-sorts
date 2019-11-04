@@ -2,7 +2,7 @@
 Any calls to the sorts methods are called from here based on the -s/--sort
 argument specified by the user.
 """
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 import argparse
 import os
