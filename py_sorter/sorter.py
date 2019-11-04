@@ -130,7 +130,7 @@ def sort(args):
         sorted_list = selection_sort(original_list)
     elif args.sort == 'merge':
         sorted_list = merge_sort(original_list)
-    elif args.sort=='shell':
+    elif args.sort == 'shell':
         sorted_list=shell_sort(original_list)
     elif args.sort == 'quick':
         try:
