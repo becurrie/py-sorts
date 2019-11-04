@@ -92,6 +92,7 @@ an array and checks it's been sorted, shuffling infinitely until list is sorted.
 
 * [**becurrie**](https://github.com/becurrie)
 * [**garroadran**](https://github.com/garroadran) - Heap, Insertion, Recursive Insertion algorithms.
+* [**underhood31**](https://github.com/underhood31) - Shell algorithm.
 
 See also the list of [contributors](https://github.com/becurrie/py-custom-sorters/contributors) who participated in this project.
 
